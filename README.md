@@ -1,10 +1,6 @@
 <a name="readme-top"></a>
 
 <div align="center">
-
-  <!-- <img src="murple_logo.png" alt="logo" width="140"  height="auto" />
-  <br/> -->
-
   <h3><b>Blog App</b></h3>
 
 </div>
@@ -41,12 +37,18 @@
 
 ## 🛠 Built With <a name="built-with"></a>
 
-### React <a name="tech-stack"></a>
+### Ruby on Rails <a name="tech-stack"></a>
 
 <details>
   <summary>Ruby on Rails</summary>
   <ul>
-    <li><a href="https://reactjs.org/">React.js</a></li>
+    <li><a href="https://rubyonrails.org/">Rails</a></li>
+  </ul>
+</details>
+<details>
+  <summary>PostgreSql Database</summary>
+  <ul>
+    <li><a href="https://postgresql.org/">Postgre</a></li>
   </ul>
 </details>
 
@@ -68,7 +70,7 @@
 
 ### Key Features <a name="key-features"></a>
 
-- **[Shows a list of books]**
+- **Creates Database Relations**
 <!-- - **[key_feature_2]** -->
 <!-- - **[key_feature_3]** -->
 
@@ -92,27 +94,26 @@ To get a local copy up and running, follow these steps.
 
 In order to run this project you need:
 - An IDE
-- Node.js
+- rails
+- ruby
 ### Setup
 
 Clone this repository to your desired folder:
 ```
-git clone https://github.com/Reggeditt/book-store.git
+git clone https://github.com/Reggeditt/blog-rails.git
 ```
 ### Install
 
 Install this project with:
 ```
 bundle install
-
-<!-- npm run build -->
 ```
 ### Usage
 
 To run the project, execute the following command:
 
 ```sh
-  rails serve
+  rails server
 ```
 
 ### Run tests
@@ -120,16 +121,11 @@ To run the project, execute the following command:
 To run tests, run the following command:
 
 ```sh
-  # npm test
+  rspec spec
 ```
 ### Deployment
-
-You can deploy this project using:
-
-```sh
-  # npm run deploy
-```
- -->
+not available yet
+<!-- You can deploy this project using:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
