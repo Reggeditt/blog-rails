@@ -113,6 +113,8 @@ bundle install
 To run the project, execute the following command:
 
 ```sh
+  rails db:create
+  rails db:migrate
   rails server
 ```
 
