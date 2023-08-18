@@ -5,6 +5,11 @@ class Post < ApplicationRecord
 
   alias_attribute :author, :user
 
+  validates :title, presence: true, length: { minimum: 3, maximum: 250 }
+  validates :text, presence: true
+  validates :comments_counter, numericality: { greater_than_or_equal_to: 0 }
+  validates :likes_counter, numericality: { greater_than_or_equal_to: 0 }
+
   def update_comments_counter
     update(comments_counter: comments.count)
   end
