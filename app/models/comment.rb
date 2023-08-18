@@ -1,9 +1,9 @@
 class Comment < ApplicationRecord
-  # belongs_to :user, foreign_key: 'author_id'
-  belongs_to :author, class_name: 'User', foreign_key: 'author_id'
+  belongs_to :user, foreign_key: 'author_id'
+  # belongs_to :author, class_name: 'User', foreign_key: 'author_id'
   belongs_to :post
 
-  # alias_attribute :author, :user
+  alias_attribute :author, :user
 
   after_create :update_post_comments_counter
 
