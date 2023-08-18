@@ -6,7 +6,6 @@ class Like < ApplicationRecord
 
   after_create :update_post_likes_counter
 
-
   private
 
   def update_post_likes_counter
