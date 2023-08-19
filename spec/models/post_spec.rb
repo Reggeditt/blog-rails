@@ -55,4 +55,24 @@ RSpec.describe Post, type: :model do
       expect(post).to_not be_valid
     end
   end
+
+  describe '#increment_likes_counter' do
+    it 'increments the likes counter of the associated post' do
+      user = User.create!(name: 'Tk', posts_counter: 0)
+      post = Post.create!(title: 'Post 1', author: user, commentscounter: 0, likescounter: 0)
+      like = Like.new(author: user, post: post)
+
+      expect { like.send(:increment_likes_counter) }.to change { post.reload.likescounter }.by(1)
+    end
+  end
+
+  describe '#decrement_likes_counter' do
+    it 'decrements the likes counter of the associated post' do
+      user = User.create!(name: 'Tk', posts_counter: 0)
+      post = Post.create!(title: 'Post 1', author: user, commentscounter: 0, likescounter: 1)
+      like = Like.new(author: user, post: post)
+
+      expect { like.send(:decrement_likes_counter) }.to change { post.reload.likescounter }.by(-1)
+    end
+  end
 end
