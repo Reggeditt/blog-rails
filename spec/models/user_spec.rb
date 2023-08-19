@@ -1,17 +1,31 @@
 require 'rails_helper'
+require 'shoulda/matchers'
 
 RSpec.describe User, type: :model do
-  subject { User.create!(name: 'John Doe', photo: 'http://placehold.it/300x300', bio: 'some bio', posts_counter: 5) }
-
-  before { subject.save }
-
-  it 'name should be present' do
-    subject.name = nil
-    expect(subject).to_not be_valid
+  describe 'validations' do
+    it { should validate_presence_of(:name) }
+    it { should validate_numericality_of(:posts_counter).only_integer.is_greater_than_or_equal_to(0) }
   end
 
-  it 'posts_counter should be greater than or equal to 0' do
-    subject.posts_counter = -1
-    expect(subject).to_not be_valid
+  describe 'associations' do
+    it { should have_many(:likes).dependent(:destroy).with_foreign_key('author_id') }
+    it { should have_many(:posts).dependent(:destroy).with_foreign_key('author_id') }
+    it { should have_many(:comments).dependent(:destroy).with_foreign_key('author_id') }
+  end
+
+  describe '#recent_posts' do
+    it 'returns the 3 most recent posts' do
+      user = User.create!(name: 'Taiwo Enoch', posts_counter: 0)
+      user.posts.create!(title: 'Post 1', text: 'This is the first post', commentscounter: 0, likescounter: 0)
+      post2 = user.posts.create!(title: 'Post 2', text: 'This is the second post', commentscounter: 0,
+                                 likescounter: 0)
+      post3 = user.posts.create!(title: 'Post 3', text: 'This is the third post', commentscounter: 0, likescounter: 0)
+      post4 = user.posts.create!(title: 'Post 4', text: 'This is the fourth post', commentscounter: 0,
+                                 likescounter: 0)
+
+      recent_posts = user.recent_posts
+
+      expect(recent_posts.pluck(:id)).to eq([post4.id, post3.id, post2.id])
+    end
   end
 end

@@ -1,24 +1,33 @@
 class Post < ApplicationRecord
-  belongs_to :user, foreign_key: 'author_id'
-  has_many :comments
-  has_many :likes
+  belongs_to :author, class_name: 'User'
+  has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
-  alias_attribute :author, :user
+  validates :title, presence: true, length: { maximum: 250 }
+  validates :commentscounter, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :likescounter, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
-  validates :title, presence: true, length: { minimum: 3, maximum: 250 }
-  validates :text, presence: true
-  validates :comments_counter, numericality: { greater_than_or_equal_to: 0 }
-  validates :likes_counter, numericality: { greater_than_or_equal_to: 0 }
+  after_save :increment_author_posts_counter
+  after_destroy :decrement_author_posts_counter
 
-  def update_comments_counter
-    update(comments_counter: comments.count)
+  after_create :update_likes_counter
+  after_destroy :update_likes_counter
+
+  def recent_comments
+    comments.order(created_at: :desc).limit(5)
+  end
+
+  private
+
+  def increment_author_posts_counter
+    author.increment!(:posts_counter)
+  end
+
+  def decrement_author_posts_counter
+    author.decrement!(:posts_counter)
   end
 
   def update_likes_counter
-    update(likes_counter: likes.count)
-  end
-
-  def recent_comments(limit = 5)
-    comments.order(created_at: :desc).limit(limit)
+    update(likescounter: likes.count)
   end
 end
