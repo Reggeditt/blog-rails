@@ -5,7 +5,7 @@ RSpec.describe Comment, type: :model do
     it 'increments the comments counter of the associated post' do
       user = User.create!(name: 'Taiwo Enoch', posts_counter: 0)
       post = Post.create!(title: 'Post 1', author: user, commentscounter: 0, likescounter: 0)
-      comment = Comment.new(text: 'This is a comment', author: user, post: post)
+      comment = Comment.new(text: 'This is a comment', author: user, post:)
 
       expect { comment.send(:increment_comments_counter) }.to change { post.reload.commentscounter }.by(1)
     end
@@ -14,7 +14,7 @@ RSpec.describe Comment, type: :model do
     it 'decrements the comments counter of the associated post' do
       user = User.create!(name: 'Taiwo Enoch', posts_counter: 0)
       post = Post.create!(title: 'Post 1', commentscounter: 3, likescounter: 0, author: user)
-      comment = Comment.new(text: 'This is a comment', author: user, post: post)
+      comment = Comment.new(text: 'This is a comment', author: user, post:)
 
       expect { comment.send(:decrement_comments_counter) }.to change { post.reload.commentscounter }.by(-1)
     end
