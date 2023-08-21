@@ -11,6 +11,15 @@
   </head>
 
   <body>
+    <header>
+      <nav>
+        <ul>
+          <li><%= link_to "List Users", users_path %></li>
+          <li><%= link_to "List posts", posts_path %></li>
+        </ul>
+      </nav>
+    </header>
     <%= yield %>
+    <footer>footer goes Here</footer>
   </body>
 </html>
