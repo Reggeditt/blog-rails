@@ -13,7 +13,6 @@ describe User, type: :request do
       expect(response).to render_template('layouts/application')
     end
 
-
     it 'should render the index content correctly' do
       get '/users'
       expect(response.body).to include('Here are the list of users')
