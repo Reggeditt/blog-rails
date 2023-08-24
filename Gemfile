@@ -13,6 +13,8 @@ gem 'sprockets-rails'
 # gem "sqlite3", "~> 1.4"
 gem 'pg', '~> 1.1'
 
+gem 'rails-controller-testing'
+
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '~> 5.0'
 
@@ -74,4 +76,5 @@ group :test do
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 4.0'
   gem 'webdrivers'
+  # gem 'rails-controller-testing'
 end
