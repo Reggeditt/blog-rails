@@ -1,3 +1,25 @@
-<h1>
-  this is the detail page for the user with id
-</h1>
+<div>
+<header>
+        <%= image_tag "#{@user.photo}" %>
+        <div>
+            <%=  %>
+            <%= link_to "#{@user.name}", user_path(@user.id) %>
+            <span>Number of posts: <%= @user.posts_counter || 0 %></span>
+       </div>
+       <p>
+          bio: <%= @user.bio %>
+       </p>
+      </header>
+    <main>
+      <ul>
+        <% @post.each_with_index do |post, index|%>
+          <li>
+            Post <%= index + 1 %>:
+            <%= post.title %>
+          </li>
+        <% end %>
+      </ul>
+    </main>
+    <%= link_to "see all posts", user_posts_path(@user.id) %>
+  <%%>
+</div>
