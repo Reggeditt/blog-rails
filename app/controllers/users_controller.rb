@@ -4,8 +4,13 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = 'users'
-    # @posts = @user.posts
-    @posts = 'posts'
+    @user = User.find_by(id: params['id'])
+    @posts = Post.all || 'No posts yet'
+    @post = []
+    @posts.each do |post|
+      if post.author_id == @user.id
+        @post << post
+      end
+    end
   end
 end
