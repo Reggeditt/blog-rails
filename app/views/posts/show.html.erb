@@ -1,1 +1,18 @@
-<h1>this is your detail page</h1>
+<h1>posts show</h1>
+<div>
+    <%= @post.title %> by <%= @user.name%>
+    <%= @post.text%><br>
+    likes: <%= @post.likescounter || 0%>
+    comments: <%= @post.commentscounter || 0%>
+</div><br>
+<div>
+  comments
+  <ul>
+      <% @post_comments.each do |comment|%>
+        <li>
+          <%= user = User.find_by(id: comment.author_id).name%>:
+          <%= comment.text%>
+        </li>
+      <% end%>
+  </ul>
+</div>
