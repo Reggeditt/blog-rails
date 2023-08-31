@@ -24,11 +24,11 @@ class Post < ApplicationRecord
     author.update(posts_counter: author.posts_counter - 1)
   end
 
-  def update_likes_counter
-    update(likescounter: likes.count)
-  end
+  # def update_likes_counter
+  #   update(likescounter: likes.count)
+  # end
 
-  def update_comments_counter
-    update(commentscounter: comments.count)
-  end
+  # def update_comments_counter
+  #   update(commentscounter: comments.count)
+  # end
 end
