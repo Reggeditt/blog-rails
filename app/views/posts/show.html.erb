@@ -1,12 +1,13 @@
-<h1>posts show</h1>
-<div>
-    <%= @post.title %> by <%= @user.name%>
-    <%= @post.text%><br>
+<div style="border: 1px solid black">
+    <h2><%= @post.title %> by <%= @user.name%></h2>
     likes: <%= @post.likescounter || 0%>
-    comments: <%= @post.commentscounter || 0%>
+    comments: <%= @post.commentscounter || 0%>    
+</div>
+<div style="margin-block: 5px; border: 1px solid black">
+  <%= @post.text%>
+</div>
     
-</div><br>
-<div>
+<div style="border: 1px solid black">
   comments
   <ul>
       <% @post_comments.each do |comment|%>
