@@ -1,25 +1,29 @@
 <div>
-<header>
-        <%= image_tag "#{@user.photo}" %>
-        <div>
-            <%=  %>
-            <%= link_to "#{@user.name}", user_path(@user.id) %>
-            <span>Number of posts: <%= @user.posts_counter || 0 %></span>
-       </div>
-       <p>
-          bio: <%= @user.bio %>
-       </p>
-      </header>
-    <main>
+  <div class="flex gap-x-6 m-5 py-5">
+    <div class="flex min-w-0 gap-x-4">
+      <%= image_tag "#{@user.photo}", class: "h-12 w-12 flex-none rounded-full bg-gray-50" %>
+      <div class="min-w-0 flex flex-auto items-center">
+        <p class="text-xl font-semibold leading-6 text-gray-900">
+          <%= link_to "#{@user.name}", user_path(@user.id) %>
+        </p>
+      </div>
+    </div>
+    <p class="mt-1 text-xs leading-5 text-gray-500">
+      <span>Number of posts: <%= @user.posts_counter || 0 %></span>
+    </p>
+  </div>
+  <main class="min-h-[200px] divide-y flex-col justify-evenly">
+    <p class="text-md my-5">
+      bio: <%= @user.bio %>
+    </p>
       <ul>
-        <% @post.each_with_index do |post, index|%>
+        <% @recent_posts.each_with_index do |post, index|%>
           <li>
-            Post <%= index + 1 %>:
-            <%= post.title %>
+            <h2>Post <%= index + 1 %>: <%= post.title %></h2>
+            <p><%= post.text %></p>
           </li>
         <% end %>
       </ul>
-    </main>
-    <%= link_to "see all posts", user_posts_path(@user.id) %>
-  <%%>
+      <%= link_to "see all posts", user_posts_path(@user.id), class: "w-full" %>
+  </main>
 </div>
