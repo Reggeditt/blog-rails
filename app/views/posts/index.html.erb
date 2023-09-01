@@ -1,1 +1,40 @@
-<h1>This is the list of posts</h1>
+<h1>posts index</h1>
+<div class="flex gap-x-6 m-5 py-5">
+  <div class="flex min-w-0 gap-x-4">
+    <%= image_tag "#{@user.photo}", class: "h-12 w-12 flex-none rounded-full bg-gray-50" %>
+    <div class="min-w-0 flex flex-auto items-center">
+      <p class="text-xl font-semibold leading-6 text-gray-900">
+        <%= link_to "#{@user.name}", user_path(@user.id) %>
+      </p>
+    </div>
+  </div>
+  <p class="mt-1 text-xs leading-5 text-gray-500">
+    <span>Number of posts: <%= @user.posts_counter || 0 %></span>
+  </p>
+</div>
+<div class="divide-y">
+  <h3>Posts</h3>
+    <ul class="divide-y border-black p-5" style="margin-block-end: 10px">
+      <% @user_posts.each_with_index do |currentPost, index|%>
+        <li style="margin-block: 10px">
+          <div>
+            <%= link_to "Post ##{index + 1 }", user_post_path(@user.id, currentPost.id) %> 
+            <%= currentPost.title%>
+            <%= currentPost.text%>
+          </div>
+          <div style="margin-top:20px">
+            <ul>
+            <h3>Recent Comments</h3>
+              <% currentPost.recent_comments.each do |comment|%>
+                <li>
+                  <%= user = User.find_by(id: comment.author_id).name%>:
+                  <%= comment.text%>
+                </li>
+              <% end%>
+            </ul>
+          </div>
+        </li>
+        <% end%>
+    </ul>
+</div>
+            

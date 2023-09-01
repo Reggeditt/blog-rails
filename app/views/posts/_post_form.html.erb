@@ -1,0 +1,5 @@
+<%= form_for([@user, @post], remote: true) do |f| %>
+  <%= f.text_field :title %>
+  <%= f.text_area :text %>
+  <%= f.button %>
+<% end %>

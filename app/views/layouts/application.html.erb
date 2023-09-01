@@ -5,18 +5,19 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <header>
+  <body class="w-screen min-h-screen" style="padding: 5px 20px">
+    <header class="w-full h-20">
       <nav>
         header goes here
       </nav>
     </header>
     <%= yield %>
-    <footer>footer goes Here</footer>
+    <footer style="position:sticky;bottom:1px">footer goes Here</footer>
   </body>
 </html>
