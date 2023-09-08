@@ -22,6 +22,12 @@
       <%= post.title %>
       <%= post.text %>
     </div>
+    <div>
+      <small>
+        likes: <%= post.likescounter || 0%>
+        comments: <%= post.commentscounter || 0%>
+      </small>
+    </div>
     <div style="margin-top: 20px">
       <ul>
         <h3>Recent Comments</h3>
