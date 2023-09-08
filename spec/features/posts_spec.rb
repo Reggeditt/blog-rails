@@ -38,7 +38,6 @@ RSpec.feature 'Posts', type: :feature do
     end
   end
 
-  # Your Show Page test remains unchanged
   describe 'Show Page' do
     it 'displays post details and comments' do
       # Navigate to the show page
@@ -60,7 +59,6 @@ RSpec.feature 'Posts', type: :feature do
         expect(page).to have_content(comment.author.name)
         expect(page).to have_content(comment.text)
       end
-
 
       # Check for like button
       expect(page).to have_button('like this post')
