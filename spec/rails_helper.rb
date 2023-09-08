@@ -2,6 +2,8 @@ require 'spec_helper'
 require 'capybara/rspec'
 require 'selenium-webdriver'
 require 'factory_bot_rails'
+# require 'database_cleaner'
+
 ENV['RAILS_ENV'] ||= 'test'
 
 require_relative '../config/environment'

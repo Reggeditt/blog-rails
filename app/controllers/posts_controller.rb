@@ -1,8 +1,9 @@
 class PostsController < ApplicationController
+  # include WillPaginate::Collection
+
   def index
-    @users = User.all
     @user = User.find_by(id: params[:user_id])
-    @posts = @user.posts.includes(:recent_comments, :author, :comments).all
+    @posts = @user.posts.includes(:recent_comments, :author, :comments).paginate(page: params[:page], per_page: 1)
   end
 
   def show
