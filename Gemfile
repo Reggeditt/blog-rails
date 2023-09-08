@@ -41,8 +41,8 @@ end
 
 group :development do
   gem 'rspec-rails', '~> 5.0.0'
+  gem 'spring'
   gem 'web-console'
-  gem "spring"
 end
 
 group :test do

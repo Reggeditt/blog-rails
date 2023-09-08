@@ -32,15 +32,10 @@ RSpec.configure do |config|
 
   Capybara.register_driver :selenium_chrome do |app|
     options = Selenium::WebDriver::Chrome::Options.new
-    Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+    Capybara::Selenium::Driver.new(app, browser: :chrome, options:)
   end
 
   Capybara.default_driver = :selenium_chrome
 
-  RSpec.configure do |config|
-    # Other configuration settings...
-  
-    # Include FactoryBot methods
-    config.include FactoryBot::Syntax::Methods
-  end
+  config.include FactoryBot::Syntax::Methods
 end
