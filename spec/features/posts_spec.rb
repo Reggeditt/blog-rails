@@ -19,4 +19,25 @@ RSpec.feature 'Posts', type: :feature do
       expect(page).to have_content('Post #1')
     end
   end
-  
+
+  describe 'Show Page' do
+    it 'displays post details and comments' do
+      # Navigate to the show page
+      visit user_post_path(user_id: @user.id, id: @post.id)
+
+      # Use Capybara's matchers to check if content is present
+      expect(page).to have_content('Test Post')
+      expect(page).to have_content('testuser')
+      expect(page).to have_content('likes:')
+      expect(page).to have_content('comments:')
+      expect(page).to have_content('This is a test post.')
+      expect(page).to have_button('like this post', wait: 10)
+      expect(page).to have_button('Add comment')
+      # user_post_path(@user.id, post.id)
+      click_link('Add comment', href: "/users/#{@user.id}/posts/#{@post.id}/comments")
+
+      expect(page).to have_content('Test Post by testuser')
+      expect(page).to have_content('This is a test post.')
+    end
+  end
+end
