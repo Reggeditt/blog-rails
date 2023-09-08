@@ -1,14 +1,15 @@
 class PostsController < ApplicationController
+  # include WillPaginate::Collection
+
   def index
-    @posts = Post.all
     @user = User.find_by(id: params[:user_id])
-    @user_posts = @posts.where(author_id: params[:user_id])
+    @posts = @user.posts.includes(:recent_comments, :author, :comments).paginate(page: params[:page], per_page: 1)
   end
 
   def show
-    @post = Post.find_by(id: params[:id]) || 'No posts yet'
-    @post_comments = Comment.all.where(post_id: params[:id])
-    @user = User.find_by(id: @post.author_id)
+    @post = Post.includes(:author, comments: :author).find(params[:id]) || 'No posts yet'
+    @post_comments = Comment.includes(:author).where(post_id: params[:id])
+    @user = @post.author
     @post_comment = @post.comments.build(author_id: @user.id)
   end
 

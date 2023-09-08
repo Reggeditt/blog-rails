@@ -13,7 +13,7 @@ development:
 
 test:
   <<: *default
-  database: blogy
+  database: capybara_test
   username: postgres
   password: reg.edit123
   host: localhost
