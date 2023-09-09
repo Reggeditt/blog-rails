@@ -4,7 +4,7 @@ default: &default
 
 development:
   <<: *default
-  database: bloggerr
+  database: bloggerr_deviser
   username: postgres
   password: reg.edit123
   host: localhost
