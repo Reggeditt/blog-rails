@@ -125,7 +125,9 @@ To run the project, execute the following command:
 To run tests, run the following command:
 
 ```sh
-  rspec spec
+   bundle exec rspec spec/features/users_spec.rb
+
+   bundle exec rspec spec/features/posts_spec.rb
 ```
 <!-- ### Deployment
 not available yet -->
